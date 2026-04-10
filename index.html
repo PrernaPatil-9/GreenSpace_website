@@ -1703,52 +1703,6 @@
   </div>
 </section>
 
-<script>
-  (function() {
-    // Counter animation function
-    function animateCounter(element, target, duration = 1200) {
-      let start = 0;
-      const increment = target / (duration / 16);
-      let current = start;
-      
-      const updateCounter = () => {
-        current += increment;
-        if (current < target) {
-          element.textContent = Math.floor(current);
-          requestAnimationFrame(updateCounter);
-        } else {
-          element.textContent = target;
-        }
-      };
-      
-      updateCounter();
-    }
-
-    // Set up Intersection Observer for testimonial section counters
-    const counterElements = document.querySelectorAll('#testimonials .counter-testimonial');
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const counterSpan = entry.target;
-          const target = parseInt(counterSpan.getAttribute('data-target'), 10);
-          
-          // Only animate if not already animated
-          if (!counterSpan.classList.contains('animated')) {
-            counterSpan.classList.add('animated');
-            animateCounter(counterSpan, target);
-          }
-        }
-      });
-    }, { threshold: 0.3 }); // Trigger when 30% of the section is visible
-
-    // Observe each counter element
-    counterElements.forEach(counter => {
-      observer.observe(counter);
-    });
-  })();
-</script>
-
     <!-- ===== CTA BANNER ===== -->
     <section class="py-24 px-6 lg:px-12 relative overflow-hidden" style="background: #0a0a0a;">
         <div class="absolute inset-0" style="background-image: url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600&q=60'); background-size:cover; background-position:center; opacity:0.2;"></div>
@@ -2373,6 +2327,51 @@
       observer.observe(counter);
     });
   })();
+
+   (function() {
+    // Counter animation function
+    function animateCounter(element, target, duration = 1200) {
+      let start = 0;
+      const increment = target / (duration / 16);
+      let current = start;
+      
+      const updateCounter = () => {
+        current += increment;
+        if (current < target) {
+          element.textContent = Math.floor(current);
+          requestAnimationFrame(updateCounter);
+        } else {
+          element.textContent = target;
+        }
+      };
+      
+      updateCounter();
+    }
+
+    // Set up Intersection Observer for testimonial section counters
+    const counterElements = document.querySelectorAll('#testimonials .counter-testimonial');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const counterSpan = entry.target;
+          const target = parseInt(counterSpan.getAttribute('data-target'), 10);
+          
+          // Only animate if not already animated
+          if (!counterSpan.classList.contains('animated')) {
+            counterSpan.classList.add('animated');
+            animateCounter(counterSpan, target);
+          }
+        }
+      });
+    }, { threshold: 0.3 }); // Trigger when 30% of the section is visible
+
+    // Observe each counter element
+    counterElements.forEach(counter => {
+      observer.observe(counter);
+    });
+  })();
+
     </script>
 
 </body>
