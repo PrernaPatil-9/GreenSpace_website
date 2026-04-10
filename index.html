@@ -825,6 +825,106 @@
             .about-img-accent { display: none; }
             .about-gold-badge { display: none; }
         }
+
+        /* Marquee Container */
+  .marquee-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  /* Single Marquee Track - FASTER SPEED (20s instead of 40s) */
+  .marquee-track {
+    display: flex;
+    width: fit-content;
+    animation: marqueeScroll 20s linear infinite;  /* Changed from 40s to 20s for double speed */
+  }
+  
+  /* Hover pause - stops animation */
+  .marquee-container:hover .marquee-track {
+    animation-play-state: paused;
+  }
+  
+  /* Marquee Items - responsive width */
+  .marquee-item {
+    width: 100%;
+    flex-shrink: 0;
+  }
+  
+  /* Desktop: 4 items */
+  @media (min-width: 1024px) {
+    .marquee-item {
+      width: 25%;
+    }
+  }
+  
+  /* Tablet: 3 items */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .marquee-item {
+      width: 33.333%;
+    }
+  }
+  
+  /* Mobile Landscape: 2 items */
+  @media (min-width: 640px) and (max-width: 767px) {
+    .marquee-item {
+      width: 50%;
+    }
+  }
+  
+  /* Mobile Portrait: 1 item */
+  @media (max-width: 639px) {
+    .marquee-item {
+      width: 100%;
+    }
+  }
+  
+  /* Continuous scroll animation - FASTER */
+  @keyframes marqueeScroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
+  /* Gradient fade on edges (optional) */
+  .marquee-container::before,
+  .marquee-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  
+  .marquee-container::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(0,0,0,0.15), transparent);
+  }
+  
+  .marquee-container::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(0,0,0,0.15), transparent);
+  }
+  
+  /* Image hover zoom effect */
+  .marquee-item img {
+    transition: transform 0.7s ease;
+  }
+  
+  .marquee-item:hover img {
+    transform: scale(1.1);
+  }
+  
+  /* Overlay text styling */
+  .marquee-item .absolute span {
+    font-weight: 500;
+    letter-spacing: 0.2em;
+  }
     </style>
 </head>
 <body>
@@ -1321,108 +1421,6 @@
   </div>
   
 </section>
-
-<style>
-  /* Marquee Container */
-  .marquee-container {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-  }
-  
-  /* Single Marquee Track - FASTER SPEED (20s instead of 40s) */
-  .marquee-track {
-    display: flex;
-    width: fit-content;
-    animation: marqueeScroll 20s linear infinite;  /* Changed from 40s to 20s for double speed */
-  }
-  
-  /* Hover pause - stops animation */
-  .marquee-container:hover .marquee-track {
-    animation-play-state: paused;
-  }
-  
-  /* Marquee Items - responsive width */
-  .marquee-item {
-    width: 100%;
-    flex-shrink: 0;
-  }
-  
-  /* Desktop: 4 items */
-  @media (min-width: 1024px) {
-    .marquee-item {
-      width: 25%;
-    }
-  }
-  
-  /* Tablet: 3 items */
-  @media (min-width: 768px) and (max-width: 1023px) {
-    .marquee-item {
-      width: 33.333%;
-    }
-  }
-  
-  /* Mobile Landscape: 2 items */
-  @media (min-width: 640px) and (max-width: 767px) {
-    .marquee-item {
-      width: 50%;
-    }
-  }
-  
-  /* Mobile Portrait: 1 item */
-  @media (max-width: 639px) {
-    .marquee-item {
-      width: 100%;
-    }
-  }
-  
-  /* Continuous scroll animation - FASTER */
-  @keyframes marqueeScroll {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-  
-  /* Gradient fade on edges (optional) */
-  .marquee-container::before,
-  .marquee-container::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 50px;
-    z-index: 2;
-    pointer-events: none;
-  }
-  
-  .marquee-container::before {
-    left: 0;
-    background: linear-gradient(to right, rgba(0,0,0,0.15), transparent);
-  }
-  
-  .marquee-container::after {
-    right: 0;
-    background: linear-gradient(to left, rgba(0,0,0,0.15), transparent);
-  }
-  
-  /* Image hover zoom effect */
-  .marquee-item img {
-    transition: transform 0.7s ease;
-  }
-  
-  .marquee-item:hover img {
-    transform: scale(1.1);
-  }
-  
-  /* Overlay text styling */
-  .marquee-item .absolute span {
-    font-weight: 500;
-    letter-spacing: 0.2em;
-  }
-</style>
 
     <!-- ===== DESIGN PROCESS ===== -->
     <section id="process" class="py-24 px-6 lg:px-12">
