@@ -966,6 +966,7 @@
     <!-- ===== HERO ===== -->
     <section id="hero-section" class="relative h-screen overflow-hidden"></section>
 
+    
     <!-- ===== ABOUT SECTION (FIXED) ===== -->
 <section class="py-24 md:py-32 px-6 lg:px-12" id="about-preview" style="background: #FAF8F3;">
     <div class="container mx-auto max-w-6xl">
@@ -2372,6 +2373,23 @@
     });
   })();
 
+// Service Cards
+document.querySelectorAll('.service-card .cursor-pointer, .service-card [onclick]').forEach(function(el) {
+        if (!el.hasAttribute('onclick')) {
+            el.addEventListener('click', function(e) {
+                e.stopPropagation();
+                window.location.href = 'services.html';
+            });
+        }
+    });
+    
+    // Alternative: Make entire service card clickable
+    document.querySelectorAll('.service-card').forEach(function(card, index) {
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', function() {
+            window.location.href = 'services.html';
+        });
+    });
     </script>
 
 </body>
