@@ -406,39 +406,49 @@
 </head>
 <body>
 
-    <!-- Navbar - Same as Home Page -->
-    <nav class="navbar sticky top-0 z-50 py-0">
-        <div class="container mx-auto px-6 lg:px-12">
-            <div class="flex justify-between items-center py-4">
-                <div class="flex items-center space-x-3">
-                    <div class="nav-logo-circle">G</div>
-                    <div>
-                        <span class="text-lg font-medium tracking-wide text-gray-800" style="font-family:'Cormorant Garamond',serif;">Green<span style="color:var(--sage);">Space</span></span>
-                        <div style="font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--warm-gray);font-family:'Jost',sans-serif;line-height:1;margin-top:1px;">Designs Studio</div>
-                    </div>
-                </div>
-                <div class="hidden md:flex items-center space-x-10">
-                    <a href="index.html" class="nav-link">Home</a>
-                    <a href="about.html" class="nav-link">About</a>
-                    <a href="projects.html" class="nav-link active-nav-link">Projects</a>
-                    <a href="services.html" class="nav-link">Services</a>
-                    <a href="contact.html" class="nav-link btn-primary">Contact</a>
-                </div>
-                <div class="md:hidden">
-                    <button id="menu-btn" class="text-gray-700 focus:outline-none">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                    </button>
+      <!-- ===== NAVBAR ===== -->
+<nav class="navbar sticky top-0 z-50 py-0">
+    <div class="container mx-auto px-6 lg:px-12">
+        <div class="flex justify-between items-center py-4">
+            <!-- Logo Section - Updated -->
+            <div class="flex items-center">
+                <div>
+                    <img src="/assets/image-removebg-preview.png" 
+                         alt="GreenSpace Designs Studio Logo"
+                         style="height: 55px; width: auto;">
                 </div>
             </div>
-            <div id="mobile-menu" class="hidden md:hidden pb-4 flex flex-col">
-                <a href="index.html" class="nav-link text-gray-700">Home</a>
-                <a href="about.html" class="nav-link text-gray-700">About</a>
-                <a href="projects.html" class="nav-link text-gray-700 active-nav-link">Projects</a>
-                <a href="services.html" class="nav-link text-gray-700">Services</a>
-                <a href="contact.html" class="nav-link text-gray-700">Contact</a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-10">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="contact.html" class="nav-link btn-primary" style="padding:10px 24px;">Contact</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-gray-700 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
             </div>
         </div>
-    </nav>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden pb-4 flex flex-col">
+            <a href="index.html" class="nav-link text-gray-700">Home</a>
+            <a href="about.html" class="nav-link text-gray-700">About</a>
+            <a href="projects.html" class="nav-link text-gray-700">Projects</a>
+            <a href="services.html" class="nav-link text-gray-700">Services</a>
+            <a href="contact.html" class="nav-link text-gray-700">Contact</a>
+        </div>
+    </div>
+</nav>
 
     <!-- DYNAMIC HERO BANNER - Loads from config -->
     <section class="hero-banner relative flex items-center justify-center overflow-hidden" id="dynamic-hero">
@@ -457,7 +467,7 @@
         <div class="flex flex-wrap justify-center gap-4">
             <button data-filter="all" class="filter-btn active">All Projects</button>
             <button data-filter="commercial" class="filter-btn">Commercial</button>
-            <button data-filter="residential" class="filter-btn">Residential</button>
+            <button data-filter="industrial" class="filter-btn">Industrial</button>
             <button data-filter="interior" class="filter-btn">Interior</button>
         </div>
     </div>
@@ -758,15 +768,15 @@
 
         // Projects Data (same as original with all extra images)
         const projects = [
-            { id: 1, category: 'commercial', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', name: 'Corporate Office - Pune', sub: 'Commercial Interior', extraImages: ['https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800', 'https://images.unsplash.com/photo-1497366412874-3415097a6e3e?w=800', 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800', 'https://images.unsplash.com/photo-1582653291997-079a1b04e6a1?w=800'] },
-            { id: 2, category: 'residential', image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', name: 'Luxury Villa - Baner', sub: 'Residential Architecture', extraImages: ['https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800', 'https://images.unsplash.com/photo-1600210491892-9d54a6d4e5b8?w=800', 'https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800', 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800'] },
-            { id: 3, category: 'interior', image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', name: 'Modern Living Room', sub: 'Interior Design', extraImages: ['https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800', 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800', 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800', 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800'] },
-            { id: 4, category: 'commercial', image: 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', name: 'Restaurant Interior', sub: 'Commercial Design', extraImages: ['https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800', 'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=800', 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800', 'https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800'] },
-            { id: 5, category: 'residential', image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', name: 'Family Home - Koregaon Park', sub: 'Residential Interior', extraImages: ['https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800', 'https://images.unsplash.com/photo-1600210491892-9d54a6d4e5b8?w=800', 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800', 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800'] },
-            { id: 6, category: 'interior', image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', name: 'Premium Apartment', sub: 'Interior Design', extraImages: ['https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800', 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800', 'https://images.unsplash.com/photo-1497366412874-3415097a6e3e?w=800', 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800'] },
-            { id: 7, category: 'commercial', image: 'https://images.unsplash.com/photo-1600607687644-c7171b42498f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', name: 'Co-working Space', sub: 'Commercial Interior', extraImages: ['https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800', 'https://images.unsplash.com/photo-1582653291997-079a1b04e6a1?w=800', 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800', 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800'] },
-            { id: 8, category: 'residential', image: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', name: 'Contemporary Bungalow', sub: 'Residential Architecture', extraImages: ['https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800', 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800', 'https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800', 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800'] },
-            { id: 9, category: 'interior', image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', name: 'Modern Office Design', sub: 'Interior Design', extraImages: ['https://images.unsplash.com/photo-1497366412874-3415097a6e3e?w=800', 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800', 'https://images.unsplash.com/photo-1582653291997-079a1b04e6a1?w=800', 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800'] }
+            { id: 1, category: 'commercial', image: 'assets/DSP_1.jfif', name: 'DSP Mutual Fund Office - Mumbai', sub: 'Commercial Interior', extraImages: ['assets/DSP_2.png', 'assets/DSP_3.png', 'assets/DSP_4.png', 'assets/DSP_5.png'] },
+            { id: 2, category: 'industrial', image: 'assets/nivea_india_1.jfif', name: 'Nivea - India', sub: 'Industrial Architecture', extraImages: ['assets/nivea_india_2.jfif', 'assets/nivea_india_3.jfif', 'assets/nivea_india_4.jfif', 'assets/nivea_india_1.jfif'] },
+            { id: 3, category: 'interior', image: 'assets/SGS_Functional_Space_1.jpg', name: 'SGS', sub: 'Interior Design', extraImages: ['assets/SGS_Functional_Space_2.jpg', 'assets/SGS_Functional_Space_3.jpg', 'assets/SGS_Functional_Space_4.jpg', 'assets/SGS_Functional_Space_7.jpg'] },
+            { id: 4, category: 'commercial', image: 'assets/SGS_B_1.png', name: 'SGS Bangalore', sub: 'Commercial Design', extraImages: ['assets/SGS_B_2.png', 'assets/SGS_B_3.png', 'assets/SGS_B_4.png', 'assets/SGS_B_5.png'] },
+            { id: 5, category: 'commercial', image: 'assets/primus_pune_1.jfif', name: 'Primus - Pune', sub: 'Commercial Design', extraImages: ['assets/primus_pune_2.jfif', 'assets/primus_pune_1.jfif', '', ''] },
+            { id: 6, category: 'interior', image: 'assets/SGS_M_Lab & Office_1.jfif', name: 'Premium Apartment', sub: 'Interior Design', extraImages: ['assets/SGS_M_Lab & Office_6.jpg', 'assets/SGS_M_Lab & Office_7.jpg', 'assets/SGS_M_Lab & Office_4.jpg', 'assets/SGS_M_Lab & Office_8.jpg'] },
+            { id: 7, category: 'industrial', image: 'assets/times_of_india_1.jfif', name: 'Times of India', sub: 'Industrial Architecture', extraImages: ['assets/times_of_india_2.jfif', 'assets/times_of_india_3.jfif', 'assets/times_of_india_4.jfif', 'assets/times_of_india_1.jfif'] },
+            { id: 8, category: 'interior', image: 'assets/Mitcon_school_pune.jfif', name: 'Mitcon International School', sub: 'Balewadi, Pune', extraImages: ['', '', '', ''] },
+            { id: 9, category: 'interior', image: 'assets/EON_Hospital_Pune_1.jfif', name: 'EON Hospital, Kharadi, Pune', sub: 'Interior Design', extraImages: ['assets/EON_Hospital_Pune_2.jfif', '', '', ''] }
         ];
 
         let activeFilter = 'all';
