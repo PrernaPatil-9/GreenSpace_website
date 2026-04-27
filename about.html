@@ -436,6 +436,24 @@
             .gf-col { padding: 28px 24px; }
             .gf-bottom { padding: 12px 24px; flex-direction: column; align-items: flex-start; }
         }
+
+          @keyframes tgIn {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Responsive: Stack cards on mobile */
+  @media (max-width: 1024px) {
+    div[style*="grid-template-columns: repeat(4, minmax(0, 1fr))"] {
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    div[style*="grid-template-columns: repeat(4, minmax(0, 1fr))"] {
+      grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+    }
+  }
     </style>
 </head>
 <body>
@@ -600,264 +618,103 @@
   </div>
 </section>
 
-<script>
-  (function() {
-    const counters = document.querySelectorAll('.counter-philo');
-    if (!counters.length) return;
-    
-    const startCounting = (counter) => {
-      const target = parseInt(counter.getAttribute('data-target'));
-      if (isNaN(target)) return;
-      
-      let current = 0;
-      const duration = 1200;
-      const stepTime = 16;
-      const increments = target / (duration / stepTime);
-      
-      const updateCounter = () => {
-        current += increments;
-        if (current >= target) {
-          counter.innerText = target;
-          return;
-        }
-        counter.innerText = Math.floor(current);
-        requestAnimationFrame(updateCounter);
-      };
-      updateCounter();
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          startCounting(entry.target);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.3 });
-    
-    counters.forEach(counter => observer.observe(counter));
-  })();
-</script>
-
-<!-- ===== TEAM SECTION ===== -->
 <!-- ===== TEAM SECTION ===== -->
 <section class="py-20 px-6 lg:px-12 bg-white relative overflow-hidden" id="team-section">
-  <div class="absolute -bottom-24 -left-24 w-[380px] h-[380px] rounded-full bg-[#eaf3de] opacity-30 pointer-events-none"></div>
-  <div class="absolute top-10 right-10 w-[220px] h-[220px] rounded-full bg-[#f0f8e8] opacity-20 pointer-events-none"></div>
 
-  <div class="container mx-auto max-w-6xl relative z-10">
+  <!-- Background blobs -->
+  <div class="absolute -bottom-24 -left-24 w-[380px] h-[380px] rounded-full bg-[#eaf3de]/30"></div>
+  <div class="absolute top-10 right-10 w-[220px] h-[220px] rounded-full bg-[#f0f8e8]/20"></div>
 
-    <!-- Eyebrow -->
-    <div class="flex items-center gap-3 mb-4">
-      <span class="w-6 h-px bg-[#C9A96E]"></span>
-      <span style="font-family:'Jost',sans-serif;font-size:10px;font-weight:400;letter-spacing:.25em;text-transform:uppercase;color:#9a8060;">Core Team</span>
-    </div>
+  <div class="max-w-6xl mx-auto relative z-10">
 
     <!-- Heading -->
     <div class="mb-12">
-      <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4.5vw,3.2rem);font-weight:300;line-height:1.08;color:#1c1c1e;margin-bottom:.75rem;">
-        The People Behind <em style="font-style:italic;color:#9a6c2e;">Every Space</em>
+      <h2 class="font-[Cormorant_Garamond] text-[clamp(2.2rem,4.5vw,3.2rem)] font-light text-[#1c1c1e]">
+        The People Behind <em class="text-[#9a6c2e] not-italic">Every Space</em>
       </h2>
-      <div style="width:28px;height:1px;background:#C9A96E;margin-bottom:1rem;"></div>
-      <p style="font-family:'DM Sans',sans-serif;font-size:13px;font-weight:300;color:#6b6560;max-width:480px;line-height:1.8;">
+      <p class="font-[DM_Sans] text-sm text-[#6b6560] max-w-md mt-2">
         A passionate team of architects, designers and engineers committed to crafting spaces that inspire and endure.
       </p>
     </div>
 
-    <!-- Team Grid with gap between cards -->
-    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;">
+    <!-- Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
-      <!-- ── Card 1: Anil Mansukh ── -->
-      <div class="tm-card" style="position:relative;overflow:hidden;cursor:pointer;animation:tgIn .6s cubic-bezier(.23,1,.32,1) .05s both;height:500px;">
-        <div class="tm-bg" style="position:absolute;inset:0;background-image:url('/assets/abt_1.jfif');background-size:cover;background-position:center top;filter:saturate(.5) brightness(.6);transition:filter .7s ease,transform .85s cubic-bezier(.23,1,.32,1);"></div>
-        <!-- Ghost number -->
-        <div style="position:absolute;bottom:-14px;right:-4px;font-family:'Cormorant Garamond',serif;font-size:9rem;font-weight:300;line-height:1;color:rgba(255,255,255,.055);letter-spacing:-.04em;pointer-events:none;user-select:none;transition:color .5s,transform .5s;" class="tm-ghost">01</div>
-        <!-- Gold left line -->
-        <div class="tm-line" style="position:absolute;top:0;left:0;width:2px;height:0;background:#C9A96E;transition:height .6s cubic-bezier(.23,1,.32,1);z-index:5;"></div>
-        <!-- Top bar -->
-        <div style="position:absolute;top:0;left:0;right:0;padding:18px 16px;display:flex;align-items:flex-start;justify-content:space-between;z-index:4;">
-          <span style="font-family:'Jost',sans-serif;font-size:9px;font-weight:300;letter-spacing:.28em;color:rgba(255,255,255,.3);">— 01</span>
-          <div style="background:rgba(5,3,1,.5);border:1px solid rgba(201,169,110,.38);padding:4px 10px;backdrop-filter:blur(8px);">
-            <span style="font-family:'Jost',sans-serif;font-size:7px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:#C9A96E;">Founder</span>
-          </div>
-        </div>
-        <!-- Static label (resting) -->
-        <div class="tm-static" style="position:absolute;bottom:0;left:0;right:0;padding:20px 18px 24px;z-index:4;transition:opacity .3s,transform .35s;">
-          <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;color:#fff;line-height:1.15;margin-bottom:4px;">Mr. Anil <em>Mansukh</em></div>
-          <div style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,169,110,.7);font-weight:300;">Founder &amp; Director</div>
-        </div>
-        <!-- Reveal panel (hover) -->
-        <div class="tm-reveal" style="position:absolute;inset:0;padding:24px 18px 22px;display:flex;flex-direction:column;justify-content:flex-end;z-index:4;opacity:0;transform:translateY(14px);transition:opacity .4s .08s,transform .4s .08s;">
-          <div style="width:26px;height:1px;background:#C9A96E;margin-bottom:13px;"></div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;color:#fff;line-height:1.15;margin-bottom:5px;">Mr. Anil <em>Mansukh</em></div>
-          <div style="font-family:'Jost',sans-serif;font-size:7px;font-weight:300;letter-spacing:.22em;text-transform:uppercase;color:#C9A96E;margin-bottom:14px;">Founder &amp; Director</div>
-          <p style="font-family:'Jost',sans-serif;font-size:10.5px;font-weight:200;color:rgba(255,255,255,.68);line-height:1.8;margin-bottom:18px;">35+ years in site supervision &amp; execution. Expert in project planning across Automobile, Pharmaceutical, Chemical &amp; commercial sectors.</p>
-          <div style="display:flex;align-items:center;justify-content:space-between;">
-            <div style="display:flex;align-items:baseline;gap:4px;">
-              <span style="font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:300;color:#C9A96E;line-height:1;">35</span>
-              <span style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:.15em;text-transform:uppercase;color:rgba(201,169,110,.55);font-weight:300;">+ yrs</span>
-            </div>
-            <div style="width:34px;height:34px;border:1px solid rgba(201,169,110,.4);display:flex;align-items:center;justify-content:center;transition:background .25s,border-color .25s;">
-              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="#C9A96E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg>
-            </div>
-          </div>
+      <!-- CARD -->
+      <div class="relative h-[500px] overflow-hidden group cursor-pointer border-[2.5px] border-[#B8965A]">
+        <div class="absolute inset-0 bg-cover bg-top brightness-75 saturate-75 transition duration-500 group-hover:scale-105 group-hover:brightness-90"
+             style="background-image:url('/assets/abt_1.jfif')"></div>
+
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-6 flex flex-col justify-end text-white">
+          <span class="text-[10px] tracking-[0.2em] text-[#C9A96E] uppercase mb-2">Founder</span>
+          <h3 class="font-[Cormorant_Garamond] text-xl font-light">
+            Mr. Anil <em class="not-italic">Mansukh</em>
+          </h3>
+          <p class="text-[11px] tracking-[0.2em] text-white/70 mt-1">Founder & Director</p>
+          <p class="text-xs text-white/75 mt-3 leading-relaxed">
+            35+ years in site supervision & execution. Expert in project planning across Automobile, Pharmaceutical, Chemical & commercial sectors.
+          </p>
+          <span class="text-[#C9A96E] mt-3 text-sm">35+ yrs</span>
         </div>
       </div>
 
-      <!-- ── Card 2: Omkar Mansukh ── -->
-      <div class="tm-card" style="position:relative;overflow:hidden;cursor:pointer;animation:tgIn .6s cubic-bezier(.23,1,.32,1) .13s both;height:500px;">
-        <div class="tm-bg" style="position:absolute;inset:0;background-image:url('/assets/abt_2.jfif');background-size:cover;background-position:center top;filter:saturate(.5) brightness(.6);transition:filter .7s ease,transform .85s cubic-bezier(.23,1,.32,1);"></div>
-        <div style="position:absolute;bottom:-14px;right:-4px;font-family:'Cormorant Garamond',serif;font-size:9rem;font-weight:300;line-height:1;color:rgba(255,255,255,.055);letter-spacing:-.04em;pointer-events:none;user-select:none;transition:color .5s,transform .5s;" class="tm-ghost">02</div>
-        <div class="tm-line" style="position:absolute;top:0;left:0;width:2px;height:0;background:#C9A96E;transition:height .6s cubic-bezier(.23,1,.32,1);z-index:5;"></div>
-        <div style="position:absolute;top:0;left:0;right:0;padding:18px 16px;display:flex;align-items:flex-start;justify-content:space-between;z-index:4;">
-          <span style="font-family:'Jost',sans-serif;font-size:9px;font-weight:300;letter-spacing:.28em;color:rgba(255,255,255,.3);">— 02</span>
-          <div style="background:rgba(5,3,1,.5);border:1px solid rgba(201,169,110,.38);padding:4px 10px;backdrop-filter:blur(8px);">
-            <span style="font-family:'Jost',sans-serif;font-size:7px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:#C9A96E;">Co-Founder</span>
-          </div>
-        </div>
-        <div class="tm-static" style="position:absolute;bottom:0;left:0;right:0;padding:20px 18px 24px;z-index:4;transition:opacity .3s,transform .35s;">
-          <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;color:#fff;line-height:1.15;margin-bottom:4px;">Ar. Omkar <em>Mansukh</em></div>
-          <div style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,169,110,.7);font-weight:300;">Co-Founder &amp; Proprietor · B.Arch.</div>
-        </div>
-        <div class="tm-reveal" style="position:absolute;inset:0;padding:24px 18px 22px;display:flex;flex-direction:column;justify-content:flex-end;z-index:4;opacity:0;transform:translateY(14px);transition:opacity .4s .08s,transform .4s .08s;">
-          <div style="width:26px;height:1px;background:#C9A96E;margin-bottom:13px;"></div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;color:#fff;line-height:1.15;margin-bottom:5px;">Ar. Omkar <em>Mansukh</em></div>
-          <div style="font-family:'Jost',sans-serif;font-size:7px;font-weight:300;letter-spacing:.22em;text-transform:uppercase;color:#C9A96E;margin-bottom:14px;">Co-Founder &amp; Proprietor · B.Arch.</div>
-          <p style="font-family:'Jost',sans-serif;font-size:10.5px;font-weight:200;color:rgba(255,255,255,.68);line-height:1.8;margin-bottom:18px;">15+ years in architecture. Believes every project should evolve contextually — creating spaces perceived in entirely new ways.</p>
-          <div style="display:flex;align-items:center;justify-content:space-between;">
-            <div style="display:flex;align-items:baseline;gap:4px;">
-              <span style="font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:300;color:#C9A96E;line-height:1;">15</span>
-              <span style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:.15em;text-transform:uppercase;color:rgba(201,169,110,.55);font-weight:300;">+ yrs</span>
-            </div>
-            <div style="width:34px;height:34px;border:1px solid rgba(201,169,110,.4);display:flex;align-items:center;justify-content:center;">
-              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="#C9A96E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg>
-            </div>
-          </div>
+      <!-- CARD -->
+      <div class="relative h-[500px] overflow-hidden group cursor-pointer border-[2.5px] border-[#B8965A]">
+        <div class="absolute inset-0 bg-cover bg-top brightness-75 saturate-75 transition duration-500 group-hover:scale-105 group-hover:brightness-90"
+             style="background-image:url('/assets/abt_2.jfif')"></div>
+
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-6 flex flex-col justify-end text-white">
+          <span class="text-[10px] tracking-[0.2em] text-[#C9A96E] uppercase mb-2">Co-Founder</span>
+          <h3 class="font-[Cormorant_Garamond] text-xl font-light">
+            Ar. Omkar <em class="not-italic">Mansukh</em>
+          </h3>
+          <p class="text-[11px] tracking-[0.2em] text-white/70 mt-1">B.Arch.</p>
+          <p class="text-xs text-white/75 mt-3 leading-relaxed">
+            15+ years in architecture. Believes every project should evolve contextually — creating spaces perceived in new ways.
+          </p>
+          <span class="text-[#C9A96E] mt-3 text-sm">15+ yrs</span>
         </div>
       </div>
 
-      <!-- ── Card 3: Dhanashree Kudtarkar ── -->
-      <div class="tm-card" style="position:relative;overflow:hidden;cursor:pointer;animation:tgIn .6s cubic-bezier(.23,1,.32,1) .21s both;height:500px;">
-        <div class="tm-bg" style="position:absolute;inset:0;background-image:url('/assets/abt_3.jfif');background-size:cover;background-position:center top;filter:saturate(.5) brightness(.6);transition:filter .7s ease,transform .85s cubic-bezier(.23,1,.32,1);"></div>
-        <div style="position:absolute;bottom:-14px;right:-4px;font-family:'Cormorant Garamond',serif;font-size:9rem;font-weight:300;line-height:1;color:rgba(255,255,255,.055);letter-spacing:-.04em;pointer-events:none;user-select:none;transition:color .5s,transform .5s;" class="tm-ghost">03</div>
-        <div class="tm-line" style="position:absolute;top:0;left:0;width:2px;height:0;background:#C9A96E;transition:height .6s cubic-bezier(.23,1,.32,1);z-index:5;"></div>
-        <div style="position:absolute;top:0;left:0;right:0;padding:18px 16px;display:flex;align-items:flex-start;justify-content:space-between;z-index:4;">
-          <span style="font-family:'Jost',sans-serif;font-size:9px;font-weight:300;letter-spacing:.28em;color:rgba(255,255,255,.3);">— 03</span>
-          <div style="background:rgba(5,3,1,.5);border:1px solid rgba(201,169,110,.38);padding:4px 10px;backdrop-filter:blur(8px);">
-            <span style="font-family:'Jost',sans-serif;font-size:7px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:#C9A96E;">Principal</span>
-          </div>
-        </div>
-        <div class="tm-static" style="position:absolute;bottom:0;left:0;right:0;padding:20px 18px 24px;z-index:4;transition:opacity .3s,transform .35s;">
-          <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;color:#fff;line-height:1.15;margin-bottom:4px;">Ar. Dhanashree <em>Kudtarkar</em></div>
-          <div style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,169,110,.7);font-weight:300;">Principal Architect · B.Arch.</div>
-        </div>
-        <div class="tm-reveal" style="position:absolute;inset:0;padding:24px 18px 22px;display:flex;flex-direction:column;justify-content:flex-end;z-index:4;opacity:0;transform:translateY(14px);transition:opacity .4s .08s,transform .4s .08s;">
-          <div style="width:26px;height:1px;background:#C9A96E;margin-bottom:13px;"></div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;color:#fff;line-height:1.15;margin-bottom:5px;">Ar. Dhanashree <em>Kudtarkar</em></div>
-          <div style="font-family:'Jost',sans-serif;font-size:7px;font-weight:300;letter-spacing:.22em;text-transform:uppercase;color:#C9A96E;margin-bottom:14px;">Principal Architect · B.Arch.</div>
-          <p style="font-family:'Jost',sans-serif;font-size:10.5px;font-weight:200;color:rgba(255,255,255,.68);line-height:1.8;margin-bottom:18px;">8+ years across 5 firms. Leads with meticulous attention to detail, creating holistic spaces that express each client's unique personality.</p>
-          <div style="display:flex;align-items:center;justify-content:space-between;">
-            <div style="display:flex;align-items:baseline;gap:4px;">
-              <span style="font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:300;color:#C9A96E;line-height:1;">8</span>
-              <span style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:.15em;text-transform:uppercase;color:rgba(201,169,110,.55);font-weight:300;">+ yrs</span>
-            </div>
-            <div style="width:34px;height:34px;border:1px solid rgba(201,169,110,.4);display:flex;align-items:center;justify-content:center;">
-              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="#C9A96E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg>
-            </div>
-          </div>
+      <!-- CARD -->
+      <div class="relative h-[500px] overflow-hidden group cursor-pointer border-[2.5px] border-[#B8965A]">
+        <div class="absolute inset-0 bg-cover bg-top brightness-75 saturate-75 transition duration-500 group-hover:scale-105 group-hover:brightness-90"
+             style="background-image:url('/assets/abt_3.jfif')"></div>
+
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-6 flex flex-col justify-end text-white">
+          <span class="text-[10px] tracking-[0.2em] text-[#C9A96E] uppercase mb-2">Principal</span>
+          <h3 class="font-[Cormorant_Garamond] text-xl font-light">
+            Ar. Dhanashree <em class="not-italic">Kudtarkar</em>
+          </h3>
+          <p class="text-[11px] tracking-[0.2em] text-white/70 mt-1">Principal Architect</p>
+          <p class="text-xs text-white/75 mt-3 leading-relaxed">
+            8+ years across 5 firms. Known for detail-driven design and creating spaces reflecting each client’s personality.
+          </p>
+          <span class="text-[#C9A96E] mt-3 text-sm">8+ yrs</span>
         </div>
       </div>
 
-      <!-- ── Card 4: Jivan Sarjine ── -->
-      <div class="tm-card" style="position:relative;overflow:hidden;cursor:pointer;animation:tgIn .6s cubic-bezier(.23,1,.32,1) .29s both;height:500px;">
-        <div class="tm-bg" style="position:absolute;inset:0;background-image:url('/assets/abt_4.jfif');background-size:cover;background-position:center top;filter:saturate(.5) brightness(.6);transition:filter .7s ease,transform .85s cubic-bezier(.23,1,.32,1);"></div>
-        <div style="position:absolute;bottom:-14px;right:-4px;font-family:'Cormorant Garamond',serif;font-size:9rem;font-weight:300;line-height:1;color:rgba(255,255,255,.055);letter-spacing:-.04em;pointer-events:none;user-select:none;transition:color .5s,transform .5s;" class="tm-ghost">04</div>
-        <div class="tm-line" style="position:absolute;top:0;left:0;width:2px;height:0;background:#C9A96E;transition:height .6s cubic-bezier(.23,1,.32,1);z-index:5;"></div>
-        <div style="position:absolute;top:0;left:0;right:0;padding:18px 16px;display:flex;align-items:flex-start;justify-content:space-between;z-index:4;">
-          <span style="font-family:'Jost',sans-serif;font-size:9px;font-weight:300;letter-spacing:.28em;color:rgba(255,255,255,.3);">— 04</span>
-          <div style="background:rgba(5,3,1,.5);border:1px solid rgba(201,169,110,.38);padding:4px 10px;backdrop-filter:blur(8px);">
-            <span style="font-family:'Jost',sans-serif;font-size:7px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:#C9A96E;">Sr. Supervisor</span>
-          </div>
-        </div>
-        <div class="tm-static" style="position:absolute;bottom:0;left:0;right:0;padding:20px 18px 24px;z-index:4;transition:opacity .3s,transform .35s;">
-          <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;color:#fff;line-height:1.15;margin-bottom:4px;">Mr. Jivan <em>Sarjine</em></div>
-          <div style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,169,110,.7);font-weight:300;">Sr. Site Supervisor · BE Civil</div>
-        </div>
-        <div class="tm-reveal" style="position:absolute;inset:0;padding:24px 18px 22px;display:flex;flex-direction:column;justify-content:flex-end;z-index:4;opacity:0;transform:translateY(14px);transition:opacity .4s .08s,transform .4s .08s;">
-          <div style="width:26px;height:1px;background:#C9A96E;margin-bottom:13px;"></div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;color:#fff;line-height:1.15;margin-bottom:5px;">Mr. Jivan <em>Sarjine</em></div>
-          <div style="font-family:'Jost',sans-serif;font-size:7px;font-weight:300;letter-spacing:.22em;text-transform:uppercase;color:#C9A96E;margin-bottom:14px;">Sr. Site Supervisor · BE Civil</div>
-          <p style="font-family:'Jost',sans-serif;font-size:10.5px;font-weight:200;color:rgba(255,255,255,.68);line-height:1.8;margin-bottom:18px;">16+ years in civil &amp; project management across medium to large-scale commercial, industrial &amp; residential projects.</p>
-          <div style="display:flex;align-items:center;justify-content:space-between;">
-            <div style="display:flex;align-items:baseline;gap:4px;">
-              <span style="font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:300;color:#C9A96E;line-height:1;">16</span>
-              <span style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:.15em;text-transform:uppercase;color:rgba(201,169,110,.55);font-weight:300;">+ yrs</span>
-            </div>
-            <div style="width:34px;height:34px;border:1px solid rgba(201,169,110,.4);display:flex;align-items:center;justify-content:center;">
-              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="#C9A96E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg>
-            </div>
-          </div>
+      <!-- CARD -->
+      <div class="relative h-[500px] overflow-hidden group cursor-pointer border-[2.5px] border-[#B8965A]">
+        <div class="absolute inset-0 bg-cover bg-top brightness-75 saturate-75 transition duration-500 group-hover:scale-105 group-hover:brightness-90"
+             style="background-image:url('/assets/abt_4.jfif')"></div>
+
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-6 flex flex-col justify-end text-white">
+          <span class="text-[10px] tracking-[0.2em] text-[#C9A96E] uppercase mb-2">Sr. Supervisor</span>
+          <h3 class="font-[Cormorant_Garamond] text-xl font-light">
+            Mr. Jivan <em class="not-italic">Sarjine</em>
+          </h3>
+          <p class="text-[11px] tracking-[0.2em] text-white/70 mt-1">BE Civil</p>
+          <p class="text-xs text-white/75 mt-3 leading-relaxed">
+            16+ years in civil & project management across commercial, industrial & residential projects.
+          </p>
+          <span class="text-[#C9A96E] mt-3 text-sm">16+ yrs</span>
         </div>
       </div>
 
-    </div><!-- /grid -->
+    </div>
   </div>
 </section>
-
-<!-- ===== TEAM SECTION STYLES & JS ===== -->
-<style>
-  @keyframes tgIn {
-    from { opacity: 0; transform: translateY(18px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  
-  /* Responsive: Stack cards on mobile */
-  @media (max-width: 1024px) {
-    div[style*="grid-template-columns: repeat(4, minmax(0, 1fr))"] {
-      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    }
-  }
-  
-  @media (max-width: 640px) {
-    div[style*="grid-template-columns: repeat(4, minmax(0, 1fr))"] {
-      grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
-    }
-  }
-</style>
-
-<script>
-  document.querySelectorAll('.tm-card').forEach(card => {
-    const bg     = card.querySelector('.tm-bg');
-    const line   = card.querySelector('.tm-line');
-    const ghost  = card.querySelector('.tm-ghost');
-    const stat   = card.querySelector('.tm-static');
-    const reveal = card.querySelector('.tm-reveal');
-
-    card.addEventListener('mouseenter', () => {
-      bg.style.filter    = 'saturate(1) brightness(.4)';
-      bg.style.transform = 'scale(1.07)';
-      line.style.height  = '100%';
-      ghost.style.color  = 'rgba(201,169,110,.13)';
-      ghost.style.transform = 'translate(-4px,-4px)';
-      stat.style.opacity   = '0';
-      stat.style.transform = 'translateY(8px)';
-      reveal.style.opacity   = '1';
-      reveal.style.transform = 'translateY(0)';
-    });
-
-    card.addEventListener('mouseleave', () => {
-      bg.style.filter    = 'saturate(.5) brightness(.6)';
-      bg.style.transform = 'scale(1)';
-      line.style.height  = '0';
-      ghost.style.color  = 'rgba(255,255,255,.055)';
-      ghost.style.transform = 'translate(0,0)';
-      stat.style.opacity   = '1';
-      stat.style.transform = 'translateY(0)';
-      reveal.style.opacity   = '0';
-      reveal.style.transform = 'translateY(14px)';
-    });
-  });
-</script>
 
     <!-- DYNAMIC PROJECT GALLERY SECTION with WAVY BLACK FRAME -->
     <section class="py-20 px-4 bg-gradient-to-br from-gray-50 to-white" id="gallery-section">
@@ -1074,6 +931,78 @@
             }, { threshold: 0.3 });
             counterElements.forEach(counter => { observer.observe(counter); });
         })();
+
+        // Team section
+
+        document.querySelectorAll('.tm-card').forEach(card => {
+    const bg     = card.querySelector('.tm-bg');
+    const line   = card.querySelector('.tm-line');
+    const ghost  = card.querySelector('.tm-ghost');
+    const stat   = card.querySelector('.tm-static');
+    const reveal = card.querySelector('.tm-reveal');
+
+    card.addEventListener('mouseenter', () => {
+      bg.style.filter    = 'saturate(1) brightness(.4)';
+      bg.style.transform = 'scale(1.07)';
+      line.style.height  = '100%';
+      ghost.style.color  = 'rgba(201,169,110,.13)';
+      ghost.style.transform = 'translate(-4px,-4px)';
+      stat.style.opacity   = '0';
+      stat.style.transform = 'translateY(8px)';
+      reveal.style.opacity   = '1';
+      reveal.style.transform = 'translateY(0)';
+    });
+
+    card.addEventListener('mouseleave', () => {
+      bg.style.filter    = 'saturate(.5) brightness(.6)';
+      bg.style.transform = 'scale(1)';
+      line.style.height  = '0';
+      ghost.style.color  = 'rgba(255,255,255,.055)';
+      ghost.style.transform = 'translate(0,0)';
+      stat.style.opacity   = '1';
+      stat.style.transform = 'translateY(0)';
+      reveal.style.opacity   = '0';
+      reveal.style.transform = 'translateY(14px)';
+    });
+  });
+
+  // About Philosophy Section 
+   (function() {
+    const counters = document.querySelectorAll('.counter-philo');
+    if (!counters.length) return;
+    
+    const startCounting = (counter) => {
+      const target = parseInt(counter.getAttribute('data-target'));
+      if (isNaN(target)) return;
+      
+      let current = 0;
+      const duration = 1200;
+      const stepTime = 16;
+      const increments = target / (duration / stepTime);
+      
+      const updateCounter = () => {
+        current += increments;
+        if (current >= target) {
+          counter.innerText = target;
+          return;
+        }
+        counter.innerText = Math.floor(current);
+        requestAnimationFrame(updateCounter);
+      };
+      updateCounter();
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          startCounting(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    
+    counters.forEach(counter => observer.observe(counter));
+  })();
     </script>
 </body>
 </html>
