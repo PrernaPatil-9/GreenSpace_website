@@ -826,31 +826,68 @@
             .about-gold-badge { display: none; }
         }
 
-        /* Marquee Container */
-  .marquee-container {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
+ /* Marquee Container */
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Single Marquee Track - VERY SLOW SPEED */
+.marquee-track {
+  display: flex;
+  width: fit-content;
+  animation: marqueeScroll 80s linear infinite;  /* Very slow - 80 seconds */
+}
+
+/* Hover pause - stops animation */
+.marquee-container:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Marquee Items - responsive width (YOUR ORIGINAL CODE) */
+.marquee-item {
+  width: 100%;
+  flex-shrink: 0;
+}
+
+/* Desktop: 4 items */
+@media (min-width: 1024px) {
+  .marquee-item {
+    width: 25%;
   }
-  
-  /* Single Marquee Track - FASTER SPEED (20s instead of 40s) */
-  .marquee-track {
-    display: flex;
-    width: fit-content;
-    animation: marqueeScroll 20s linear infinite;  /* Changed from 40s to 20s for double speed */
+}
+
+/* Tablet: 3 items */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .marquee-item {
+    width: 33.333%;
   }
-  
-  /* Hover pause - stops animation */
-  .marquee-container:hover .marquee-track {
-    animation-play-state: paused;
+}
+
+/* Mobile Landscape: 2 items */
+@media (min-width: 640px) and (max-width: 767px) {
+  .marquee-item {
+    width: 50%;
   }
-  
-  /* Marquee Items - responsive width */
+}
+
+/* Mobile Portrait: 1 item */
+@media (max-width: 639px) {
   .marquee-item {
     width: 100%;
-    flex-shrink: 0;
   }
-  
+}
+
+/* Continuous scroll animation - VERY SLOW */
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
   /* Desktop: 4 items */
   @media (min-width: 1024px) {
     .marquee-item {
@@ -1625,86 +1662,123 @@ a.gf-ctval:hover .contact-icon { opacity: 1; }
 <!-- ===== INSPIRATION IMAGE MARQUEE ===== -->
 <section id="inspo-strip" class="py-0 relative overflow-hidden">
 
-  <!-- Marquee Container -->
-  <div class="marquee-container relative overflow-hidden">
-    
-    <!-- Marquee Track -->
-    <div class="marquee-track flex">
-      
-      <!-- Item -->
-      <div class="marquee-item flex-shrink-0 relative overflow-hidden">
-        <img src="/assets/nivea_india_2.jfif" class="w-full h-[300px] object-cover transition-transform duration-700 hover:scale-110">
-        <div class="absolute bottom-0 left-0 right-0 bg-black/50 py-2 text-center">
-          <span class="text-white text-sm tracking-widest uppercase">Nivea India</span>
-        </div>
-      </div>
-
-      <div class="marquee-item flex-shrink-0 relative overflow-hidden">
-        <img src="/assets/nivea_india_4.jfif" class="w-full h-[300px] object-cover transition-transform duration-700 hover:scale-110">
-        <div class="absolute bottom-0 left-0 right-0 bg-black/50 py-2 text-center">
-          <span class="text-white text-sm tracking-widest uppercase">Nivea India</span>
-        </div>
-      </div>
-
-      <div class="marquee-item flex-shrink-0 relative overflow-hidden">
-        <img src="/assets/SGS_C_8.jfif" class="w-full h-[300px] object-cover transition-transform duration-700 hover:scale-110">
-        <div class="absolute bottom-0 left-0 right-0 bg-black/50 py-2 text-center">
-          <span class="text-white text-sm tracking-widest uppercase">SGS Chakan</span>
-        </div>
-      </div>
-
-      <div class="marquee-item flex-shrink-0 relative overflow-hidden">
-        <img src="/assets/NRI_Hostel_Pune_2.jfif" class="w-full h-[300px] object-cover transition-transform duration-700 hover:scale-110">
-        <div class="absolute bottom-0 left-0 right-0 bg-black/50 py-2 text-center">
-          <span class="text-white text-sm tracking-widest uppercase">NRI Hostel</span>
-        </div>
-      </div>
-
-      <div class="marquee-item flex-shrink-0 relative overflow-hidden">
-        <img src="/assets/SGS_B_2.png" class="w-full h-[300px] object-cover transition-transform duration-700 hover:scale-110">
-        <div class="absolute bottom-0 left-0 right-0 bg-black/50 py-2 text-center">
-          <span class="text-white text-sm tracking-widest uppercase">SGS Bangalore</span>
-        </div>
-      </div>
-
-      <div class="marquee-item flex-shrink-0 relative overflow-hidden">
-        <img src="/assets/Vidhyarthi_Sahayak_Samiti_Pune.jfif" class="w-full h-[300px] object-cover transition-transform duration-700 hover:scale-110">
-        <div class="absolute bottom-0 left-0 right-0 bg-black/50 py-2 text-center">
-          <span class="text-white text-sm tracking-widest uppercase">Vidhyarthi Sahayak Samiti Pune</span>
-        </div>
-      </div>
-
-      <!-- Duplicate for seamless loop -->
-      <div class="marquee-item flex-shrink-0 relative overflow-hidden">
-        <img src="/assets/nivea_india_2.jfif" class="w-full h-[300px] object-cover transition-transform duration-700 hover:scale-110">
-        <div class="absolute bottom-0 left-0 right-0 bg-black/50 py-2 text-center">
-          <span class="text-white text-sm tracking-widest uppercase">Nivea India</span>
-        </div>
-      </div>
-
-      <div class="marquee-item flex-shrink-0 relative overflow-hidden">
-        <img src="/assets/nivea_india_4.jfif" class="w-full h-[300px] object-cover transition-transform duration-700 hover:scale-110">
-        <div class="absolute bottom-0 left-0 right-0 bg-black/50 py-2 text-center">
-          <span class="text-white text-sm tracking-widest uppercase">Nivea India</span>
-        </div>
-      </div>
-
-      <div class="marquee-item flex-shrink-0 relative overflow-hidden">
-        <img src="/assets/SGS_C_8.jfif" class="w-full h-[300px] object-cover transition-transform duration-700 hover:scale-110">
-        <div class="absolute bottom-0 left-0 right-0 bg-black/50 py-2 text-center">
-          <span class="text-white text-sm tracking-widest uppercase">SGS Chakan</span>
-        </div>
-      </div>
-
-      <div class="marquee-item flex-shrink-0 relative overflow-hidden">
-        <img src="/assets/NRI_Hostel_Pune_2.jfif" class="w-full h-[300px] object-cover transition-transform duration-700 hover:scale-110">
-        <div class="absolute bottom-0 left-0 right-0 bg-black/50 py-2 text-center">
-          <span class="text-white text-sm tracking-widest uppercase">NRI Hostel</span>
-        </div>
-      </div>
-
+<!-- Marquee Track -->
+<div class="marquee-track flex">
+  
+  <!-- Item -->
+  <div class="marquee-item flex-shrink-0 relative overflow-hidden" style="width: 300px;">
+    <img src="/assets/nivea_india_2.jfif" class="w-full h-[300px] object-cover transition-transform duration-700 hover:scale-110">
+    <div class="absolute bottom-0 left-0 right-0 bg-black/50 py-2 text-center">
+      <span class="text-white text-sm tracking-widest uppercase">Nivea India</span>
     </div>
   </div>
+
+  <div class="marquee-item flex-shrink-0 relative overflow-hidden" style="width: 300px;">
+    <img src="/assets/nivea_india_4.jfif" class="w-full h-[300px] object-cover transition-transform duration-700 hover:scale-110">
+    <div class="absolute bottom-0 left-0 right-0 bg-black/50 py-2 text-center">
+      <span class="text-white text-sm tracking-widest uppercase">Nivea India</span>
+    </div>
+  </div>
+
+  <div class="marquee-item flex-shrink-0 relative overflow-hidden" style="width: 300px;">
+    <img src="/assets/SGS_C_8.jfif" class="w-full h-[300px] object-cover transition-transform duration-700 hover:scale-110">
+    <div class="absolute bottom-0 left-0 right-0 bg-black/50 py-2 text-center">
+      <span class="text-white text-sm tracking-widest uppercase">SGS Chakan</span>
+    </div>
+  </div>
+
+  <div class="marquee-item flex-shrink-0 relative overflow-hidden" style="width: 300px;">
+    <img src="/assets/NRI_Hostel_Pune_2.jfif" class="w-full h-[300px] object-cover transition-transform duration-700 hover:scale-110">
+    <div class="absolute bottom-0 left-0 right-0 bg-black/50 py-2 text-center">
+      <span class="text-white text-sm tracking-widest uppercase">NRI Hostel</span>
+    </div>
+  </div>
+
+  <div class="marquee-item flex-shrink-0 relative overflow-hidden" style="width: 300px;">
+    <img src="/assets/SGS_B_2.png" class="w-full h-[300px] object-cover transition-transform duration-700 hover:scale-110">
+    <div class="absolute bottom-0 left-0 right-0 bg-black/50 py-2 text-center">
+      <span class="text-white text-sm tracking-widest uppercase">SGS Bangalore</span>
+    </div>
+  </div>
+
+  <div class="marquee-item flex-shrink-0 relative overflow-hidden" style="width: 300px;">
+    <img src="/assets/Vidhyarthi_Sahayak_Samiti_Pune.jfif" class="w-full h-[300px] object-cover transition-transform duration-700 hover:scale-110">
+    <div class="absolute bottom-0 left-0 right-0 bg-black/50 py-2 text-center">
+      <span class="text-white text-sm tracking-widest uppercase">Vidhyarthi Sahayak Samiti Pune</span>
+    </div>
+  </div>
+  
+  <div class="marquee-item flex-shrink-0 relative overflow-hidden" style="width: 300px;">
+    <img src="/assets/Bhagwat_Office_Pimpri (1).png" class="w-full h-[300px] object-cover transition-transform duration-700 hover:scale-110">
+    <div class="absolute bottom-0 left-0 right-0 bg-black/50 py-2 text-center">
+      <span class="text-white text-sm tracking-widest uppercase">Bhagwat Office</span>
+    </div>
+  </div>
+  
+  <div class="marquee-item flex-shrink-0 relative overflow-hidden" style="width: 300px;">
+    <img src="/assets/Dwivedi_3bhk (4).jpeg" class="w-full h-[300px] object-cover transition-transform duration-700 hover:scale-110">
+    <div class="absolute bottom-0 left-0 right-0 bg-black/50 py-2 text-center">
+      <span class="text-white text-sm tracking-widest uppercase">Dwivedi 3BHK</span>
+    </div>
+  </div>
+  
+  <!-- DUPLICATE - Complete copy of ALL original items -->
+  <div class="marquee-item flex-shrink-0 relative overflow-hidden" style="width: 300px;">
+    <img src="/assets/nivea_india_2.jfif" class="w-full h-[300px] object-cover transition-transform duration-700 hover:scale-110">
+    <div class="absolute bottom-0 left-0 right-0 bg-black/50 py-2 text-center">
+      <span class="text-white text-sm tracking-widest uppercase">Nivea India</span>
+    </div>
+  </div>
+
+  <div class="marquee-item flex-shrink-0 relative overflow-hidden" style="width: 300px;">
+    <img src="/assets/nivea_india_4.jfif" class="w-full h-[300px] object-cover transition-transform duration-700 hover:scale-110">
+    <div class="absolute bottom-0 left-0 right-0 bg-black/50 py-2 text-center">
+      <span class="text-white text-sm tracking-widest uppercase">Nivea India</span>
+    </div>
+  </div>
+
+  <div class="marquee-item flex-shrink-0 relative overflow-hidden" style="width: 300px;">
+    <img src="/assets/SGS_C_8.jfif" class="w-full h-[300px] object-cover transition-transform duration-700 hover:scale-110">
+    <div class="absolute bottom-0 left-0 right-0 bg-black/50 py-2 text-center">
+      <span class="text-white text-sm tracking-widest uppercase">SGS Chakan</span>
+    </div>
+  </div>
+
+  <div class="marquee-item flex-shrink-0 relative overflow-hidden" style="width: 300px;">
+    <img src="/assets/NRI_Hostel_Pune_2.jfif" class="w-full h-[300px] object-cover transition-transform duration-700 hover:scale-110">
+    <div class="absolute bottom-0 left-0 right-0 bg-black/50 py-2 text-center">
+      <span class="text-white text-sm tracking-widest uppercase">NRI Hostel</span>
+    </div>
+  </div>
+
+  <div class="marquee-item flex-shrink-0 relative overflow-hidden" style="width: 300px;">
+    <img src="/assets/SGS_B_2.png" class="w-full h-[300px] object-cover transition-transform duration-700 hover:scale-110">
+    <div class="absolute bottom-0 left-0 right-0 bg-black/50 py-2 text-center">
+      <span class="text-white text-sm tracking-widest uppercase">SGS Bangalore</span>
+    </div>
+  </div>
+
+  <div class="marquee-item flex-shrink-0 relative overflow-hidden" style="width: 300px;">
+    <img src="/assets/Vidhyarthi_Sahayak_Samiti_Pune.jfif" class="w-full h-[300px] object-cover transition-transform duration-700 hover:scale-110">
+    <div class="absolute bottom-0 left-0 right-0 bg-black/50 py-2 text-center">
+      <span class="text-white text-sm tracking-widest uppercase">Vidhyarthi Sahayak Samiti Pune</span>
+    </div>
+  </div>
+  
+  <div class="marquee-item flex-shrink-0 relative overflow-hidden" style="width: 300px;">
+    <img src="/assets/Bhagwat_Office_Pimpri (1).png" class="w-full h-[300px] object-cover transition-transform duration-700 hover:scale-110">
+    <div class="absolute bottom-0 left-0 right-0 bg-black/50 py-2 text-center">
+      <span class="text-white text-sm tracking-widest uppercase">Bhagwat Office</span>
+    </div>
+  </div>
+  
+  <div class="marquee-item flex-shrink-0 relative overflow-hidden" style="width: 300px;">
+    <img src="/assets/Dwivedi_3bhk (1).jpeg" class="w-full h-[300px] object-cover transition-transform duration-700 hover:scale-110">
+    <div class="absolute bottom-0 left-0 right-0 bg-black/50 py-2 text-center">
+      <span class="text-white text-sm tracking-widest uppercase">Dwivedi 3BHK</span>
+    </div>
+  </div>
+</div>
 
 </section>
 
@@ -2288,7 +2362,11 @@ a.gf-ctval:hover .contact-icon { opacity: 1; }
             { id: 7, name: 'Sunrise Business Park', sub: 'Commercial Interior', image: 'assets/sunrise_balewadi_1.jfif', extraImages: ['assets/sunrise_balewadi_2.jfif', 'assets/sunrise_balewadi_3.jfif', 'assets/sunrise_balewadi_1.jfif', ''] },
             { id: 8, name: 'SGS India Pvt. Ltd.', sub: 'Interior Design', image: 'assets/SGS_M_Lab & Office_1.jfif', extraImages: ['assets/SGS_M_Lab & Office_3.jpg', 'assets/SGS_M_Lab & Office_4.jpg', 'assets/SGS_M_Lab & Office_8.jpg', 'assets/SGS_M_Lab & Office_7.jpg'] },
             { id: 9, name: 'Vidhyarthi Sahayak Samiti', sub: 'Commercial Interior', image: 'assets/Vidhyarthi_Sahayak_Samiti_Pune.jfif', extraImages: ['assets/Vidhyarthi_Sahayak_Samiti_Pune.jfif', '', '', ''] },
-            { id: 10, name: 'Bharati Hospital', sub: 'Commercial Interior', image: 'assets/Bharati_hospital_1.jfif', extraImages: ['https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800', 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800', 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800'] }
+            { id: 10, name: 'Bharati Hospital', sub: 'Commercial Interior', image: 'assets/Bharati_hospital_1.jfif', extraImages: ['https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800', 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800', 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800'] },
+            { id: 11, name: 'Dwivedi', sub: 'Interior Design', image: 'assets/Dwivedi_3bhk (5).jpeg', extraImages: ['assets/Dwivedi_3bhk (2).jpeg', 'assets/Dwivedi_3bhk (1).jpeg', 'assets/Dwivedi_3bhk (3).jpeg', 'assets/Dwivedi_3bhk (6).jpeg'] },
+            { id: 12, name: 'SGS Mumbai', sub: 'Commercial Design', image: 'assets/SGS_M (9).JPG', extraImages: ['assets/SGS_M (3).JPG', 'assets/SGS_M (4).JPG', 'assets/SGS_M (7).JPG', 'assets/SGS_M (1).JPG'] },
+            { id: 13, name: 'Mahale', sub: 'Interior Design', image: 'assets/Mahale_3BHK (3).jpeg', extraImages: ['assets/Mahale_3BHK (2).jpeg', 'assets/Mahale_3BHK (1).jpeg', 'assets/Mahale_3BHK (4).jpeg', 'assets/Mahale_3BHK (7).jpeg'] },
+            { id: 14, name: 'Bhagwat Office', sub: 'Interior Design', image: 'assets/Bhagwat_Office_Pimpri (1).png', extraImages: ['assets/Bhagwat_Office_Pimpri (2).png', 'assets/Bhagwat_Office_Pimpri (3).png', 'assets/Bhagwat_Office_Pimpri (4).png', 'assets/Bhagwat_Office_Pimpri (5).png'] },
         ];
 
         // Modal Functions
